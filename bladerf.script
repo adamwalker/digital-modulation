@@ -1,0 +1,9 @@
+set frequency tx 920M
+set samplerate 1.0M
+set bandwidth 1.5M
+set txvga1 -25
+cal lms
+cal dc tx
+tx config file=samples.bin format=bin
+tx start
+tx wait 
