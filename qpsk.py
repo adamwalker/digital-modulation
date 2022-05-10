@@ -4,7 +4,7 @@ from scipy import signal
 from commpy import filters
 from commpy import impairments
 
-num_symbols = 8192
+num_symbols = 32768
 samples_per_symbol = 8
 
 # Generate easily recognisable data consisting of alternating ones and zeros
