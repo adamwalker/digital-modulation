@@ -55,7 +55,9 @@ rx = impairments.add_frequency_offset(rx, 1, 0.2)
 #Receive
 
 # Coarse carrier recovery
-psd = np.abs(np.fft.fft(rx ** 4) * np.hamming(len(rx)))
+fourthPower = rx ** 4
+fftLen = 8192
+psd = np.abs(np.fft.fft(fourthPower[fftLen:2*fftLen]) * np.hamming(fftLen))
 #f = np.linspace(-1/2.0, 1/2.0, len(psd))
 #plt.plot(f, psd)
 #plt.show()
@@ -63,7 +65,7 @@ psd = np.abs(np.fft.fft(rx ** 4) * np.hamming(len(rx)))
 print("Carrier offset is: ")
 print(np.argmax(psd) / len(rx) / 4)
 
-rx = impairments.add_frequency_offset(rx, len(rx), -np.argmax(psd) / 4)
+rx = impairments.add_frequency_offset(rx, fftLen, -np.argmax(psd) / 4)
 psd = np.abs(np.fft.fft(rx ** 4))
 print("Carrier offset (post coarse correction) is: ")
 print(np.argmax(psd))
