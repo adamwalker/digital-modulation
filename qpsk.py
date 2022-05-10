@@ -27,10 +27,10 @@ print(x)
 # Generate root raised cosine filter 
 num_taps = 50 * samples_per_symbol + int (samples_per_symbol / 2)
 alpha = 0.35
-t, h = filters.rrcosfilter(num_taps, alpha, 1, samples_per_symbol)
+t, rrc_taps = filters.rrcosfilter(num_taps, alpha, 1, samples_per_symbol)
 
 # Interpolate with RRC
-tx = np.convolve(x, h)
+tx = np.convolve(x, rrc_taps)
 
 #FFT of tx signal
 #s = tx * np.hamming(len(tx))
@@ -66,7 +66,7 @@ print("Carrier offset (post coarse correction) is: ")
 print(np.argmax(psd))
 
 # Matched filter
-matched_filtered = np.convolve(rx, h)
+matched_filtered = np.convolve(rx, rrc_taps)
 
 #Symbol timing recovery
 #Upsample
