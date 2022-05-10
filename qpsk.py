@@ -50,7 +50,7 @@ rx = np.concatenate((pre, rx))
 n = (np.random.randn(len(rx)) + 1j*np.random.randn(len(rx)))/np.sqrt(2)
 rx = rx + 0.1 * n
 #Add frequency offset
-rx = impairments.add_frequency_offset(rx, 1, 0.0001)
+rx = impairments.add_frequency_offset(rx, 1, 0.2)
 
 #Receive
 
