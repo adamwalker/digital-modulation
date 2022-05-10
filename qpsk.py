@@ -43,6 +43,9 @@ tx = np.convolve(x, rrc_taps)
 
 #Channel
 rx = tx
+#Add delay
+pre = np.zeros(100, dtype=complex)
+rx = np.concatenate((pre, rx))
 #Add noise
 n = (np.random.randn(len(rx)) + 1j*np.random.randn(len(rx)))/np.sqrt(2)
 rx = rx + 0.1 * n
