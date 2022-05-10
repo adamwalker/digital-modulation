@@ -20,10 +20,6 @@ x = np.zeros(num_symbols * samples_per_symbol, dtype=complex)
 for idx, bitss in enumerate(scrambled.reshape((num_symbols, 2))):
     x[idx * samples_per_symbol] = (bitss[0]*2-1) + 1j*(bitss[1]*2-1)
 
-print(bits)
-print(scrambled)
-print(x)
-
 # Generate root raised cosine filter 
 num_taps = 50 * samples_per_symbol + int (samples_per_symbol / 2)
 alpha = 0.35
