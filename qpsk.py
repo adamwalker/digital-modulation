@@ -13,7 +13,7 @@ bits = np.tile([1, 0, 1, 0, 1, 0, 1, 0], int((num_symbols * 2) / 8))
 #Synchronous scrambler to make the data look random
 scrambled = np.zeros(len(bits), dtype=bool)
 for idx in range(len(bits)):
-    scrambled[idx] = bits[idx] ^ scrambled[idx - 23] ^ scrambled[idx - 18]
+    scrambled[idx] = bits[idx] ^ scrambled[idx - 39] ^ scrambled[idx - 58]
 
 # Upsample
 x = np.zeros(num_symbols * samples_per_symbol, dtype=complex)
@@ -127,6 +127,6 @@ plt.show()
 out_flat = out.view(np.float64)
 out_sliced = out_flat > 0
 #Descramble
-out_descrambled = out_sliced[:-23] ^ out_sliced[5:-18] ^ out_sliced[23:]
-print(out_descrambled[5000:5100])
+out_descrambled = out_sliced[:-58] ^ out_sliced[19:-39] ^ out_sliced[58:]
+print(out_descrambled[7000:7100])
 
