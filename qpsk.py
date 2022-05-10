@@ -63,7 +63,7 @@ psd = np.abs(np.fft.fft(rx ** 4) * np.hamming(len(rx)))
 print("Carrier offset is: ")
 print(np.argmax(psd) / len(rx) / 4)
 
-rx = rx #impairments.add_frequency_offset(rx, len(rx), -np.argmax(psd) / 2)
+rx = impairments.add_frequency_offset(rx, len(rx), -np.argmax(psd) / 4)
 psd = np.abs(np.fft.fft(rx ** 4))
 print("Carrier offset (post coarse correction) is: ")
 print(np.argmax(psd))
