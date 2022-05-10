@@ -73,7 +73,7 @@ matched_filtered = np.convolve(rx, rrc_taps) / samples_per_symbol
 
 #Symbol timing recovery
 #Upsample
-timing_upsample = 16
+timing_upsample = 8
 interpolated = signal.resample_poly(matched_filtered, timing_upsample, 1)
 samples_per_symbol_interp = timing_upsample * samples_per_symbol
 
