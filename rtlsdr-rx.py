@@ -35,7 +35,7 @@ plt.show()
 #Receive
 
 # Coarse carrier recovery
-psd = np.abs(np.fft.fft(rx ** 4))
+psd = np.abs(np.fft.fft((rx ** 4) * np.hamming(len(rx))))
 f = np.linspace(-1/2.0, 1/2.0, len(psd))
 plt.plot(f, psd)
 plt.show()
