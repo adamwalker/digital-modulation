@@ -25,7 +25,7 @@ t, rrc_filter = filters.rrcosfilter(num_taps, alpha, 1, samples_per_symbol)
 
 #FFT of signal
 s = rx * np.hamming(len(rx))
-S = np.fft.fftshift(np.fft.fft(s))
+S = np.fft.fftshift(np.fft.fft(s * np.hamming(len(s))))
 S_mag = np.abs(S)
 f = np.linspace(-0.5,0.5,len(rx))
 plt.figure(0)
