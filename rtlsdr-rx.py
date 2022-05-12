@@ -51,7 +51,7 @@ print("Carrier offset (post coarse correction) is: ")
 print(np.argmax(psd))
 
 # Matched filter
-matched_filtered = np.convolve(rx, rrc_filter)
+matched_filtered = np.convolve(rx, rrc_filter) / samples_per_symbol
 
 #Symbol timing recovery
 
@@ -71,7 +71,7 @@ while i_out < len(timing_out) and i_in < len(interpolated):
     timing_error = ((interpolated[i_in_int] - interpolated[i_in_int - samples_per_symbol_interp]) * interpolated[i_in_int - int(samples_per_symbol_interp/2)].conj()).real;
 
     i_out += 1
-    i_in += samples_per_symbol_interp - timing_error * 0.005
+    i_in += samples_per_symbol_interp - timing_error * 0.3
 
 #Plot symbol timing convergence
 plt.figure(0)
