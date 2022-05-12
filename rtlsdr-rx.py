@@ -71,7 +71,7 @@ while i_out < len(timing_out) and i_in < len(interpolated):
     timing_error = ((interpolated[i_in_int] - interpolated[i_in_int - samples_per_symbol_interp]) * interpolated[i_in_int - int(samples_per_symbol_interp/2)].conj()).real;
 
     i_out += 1
-    i_in += samples_per_symbol_interp - timing_error * 0.3
+    i_in += samples_per_symbol_interp - timing_error * 0.1
 
 #Plot symbol timing convergence
 plt.figure(0)
