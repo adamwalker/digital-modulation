@@ -110,6 +110,6 @@ plt.show()
 out_flat = out.view(np.float64)
 out_sliced = out_flat > 0
 #Descrambler
-out_descrambled = out_sliced[:-23] ^ out_sliced[5:-18] ^ out_sliced[23:]
+out_descrambled = out_sliced[:-58] ^ out_sliced[19:-39] ^ out_sliced[58:]
 print(out_descrambled[15000:15100])
 
