@@ -21,7 +21,7 @@ rx = sdr.read_samples(num_samples)
 # Generate root raised cosine
 num_taps = 20 * samples_per_symbol 
 alpha = 0.35
-t, h = filters.rrcosfilter(num_taps, alpha, 1, samples_per_symbol)
+t, rrc_filter = filters.rrcosfilter(num_taps, alpha, 1, samples_per_symbol)
 
 #FFT of signal
 s = rx * np.hamming(len(rx))
@@ -49,7 +49,7 @@ print("Carrier offset (post coarse correction) is: ")
 print(np.argmax(psd))
 
 # Matched filter
-matched_filtered = np.convolve(rx, h)
+matched_filtered = np.convolve(rx, rrc_filter)
 
 #Symbol timing recovery
 
