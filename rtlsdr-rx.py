@@ -83,7 +83,7 @@ freq = 0
 alpha = 0.01
 beta = 0.002
 
-out = np.zeros(len(timing_out), dtype=np.complex)
+out = np.zeros(len(timing_out), dtype=complex)
 
 for i in range(len(timing_out)):
     out[i] = timing_out[i] * np.exp(-1j*phase) # adjust the input sample by the inverse of the estimated phase offset
