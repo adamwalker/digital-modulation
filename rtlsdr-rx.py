@@ -19,7 +19,7 @@ rx = sdr.read_samples(num_samples)
 rx = sdr.read_samples(num_samples)
 
 # Generate root raised cosine
-num_taps = 50 * samples_per_symbol 
+num_taps = 20 * samples_per_symbol 
 alpha = 0.35
 t, h = filters.rrcosfilter(num_taps, alpha, 1, samples_per_symbol)
 
