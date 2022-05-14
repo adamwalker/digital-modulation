@@ -4,7 +4,7 @@ from scipy import signal
 from commpy import filters
 
 num_symbols = int(2e6)
-samples_per_symbol = 8
+samples_per_symbol = 2
 
 # Generate data
 bits = np.tile([1, 0, 1, 0, 1, 0, 1, 0], int((num_symbols * 2) / 8)) 
