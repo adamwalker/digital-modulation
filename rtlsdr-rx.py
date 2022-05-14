@@ -6,7 +6,8 @@ from commpy import impairments
 from rtlsdr import RtlSdr
 
 samples_per_symbol = 8
-num_samples = 65536 * 8
+num_symbols = 65536
+num_samples = num_symbols * samples_per_symbol
 
 sdr = RtlSdr()
 
@@ -62,7 +63,7 @@ samples_per_symbol_interp = timing_upsample * samples_per_symbol
 
 i_in = 0;
 i_out = 0;
-timing_out = np.zeros(int(num_samples / samples_per_symbol), dtype=complex)
+timing_out = np.zeros(num_symbols, dtype=complex)
 while i_out < len(timing_out) and i_in < len(interpolated):
     i_in_int = int(round(i_in))
 
