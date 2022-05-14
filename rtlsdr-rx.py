@@ -5,14 +5,14 @@ from commpy import filters
 from commpy import impairments
 from rtlsdr import RtlSdr
 
-samples_per_symbol = 8
+samples_per_symbol = 2
 num_symbols = 65536
 num_samples = num_symbols * samples_per_symbol
 
 sdr = RtlSdr()
 
 # configure device
-sdr.sample_rate = 1e6  # Hz
+sdr.sample_rate = 250e3  # Hz
 sdr.center_freq = 920e6     # Hz
 sdr.gain = 'auto'
 
@@ -57,7 +57,7 @@ matched_filtered = np.convolve(rx, rrc_filter) / samples_per_symbol
 #Symbol timing recovery
 
 #Upsample
-timing_upsample = 8
+timing_upsample = 32
 interpolated = signal.resample_poly(matched_filtered, timing_upsample, 1)
 samples_per_symbol_interp = timing_upsample * samples_per_symbol
 
