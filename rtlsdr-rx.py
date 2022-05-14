@@ -12,7 +12,7 @@ num_samples = num_symbols * samples_per_symbol
 sdr = RtlSdr()
 
 # configure device
-sdr.sample_rate = 1000e3  # Hz
+sdr.sample_rate = 1e6  # Hz
 sdr.center_freq = 920e6     # Hz
 sdr.gain = 'auto'
 

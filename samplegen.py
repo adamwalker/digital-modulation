@@ -20,7 +20,7 @@ for idx, bitss in enumerate(scrambled.reshape((num_symbols, 2))):
     x[idx * samples_per_symbol] = (bitss[0]*2-1) + 1j*(bitss[1]*2-1)
 
 # Generate root raised cosine
-num_taps = 50 * samples_per_symbol + int (samples_per_symbol / 2)
+num_taps = 20 * samples_per_symbol
 alpha = 0.35
 t, h = filters.rrcosfilter(num_taps, alpha, 1, samples_per_symbol)
 
