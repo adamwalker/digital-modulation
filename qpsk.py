@@ -5,7 +5,7 @@ from commpy import filters
 from commpy import impairments
 
 num_symbols = 32768
-samples_per_symbol = 8
+samples_per_symbol = 2
 
 # Generate easily recognisable data consisting of alternating ones and zeros
 bits = np.tile([1, 0, 1, 0, 1, 0, 1, 0], int((num_symbols * 2) / 8)) 
@@ -75,7 +75,7 @@ matched_filtered = np.convolve(rx, rrc_taps) / samples_per_symbol
 
 #Symbol timing recovery
 #Upsample
-timing_upsample = 8
+timing_upsample = 32
 interpolated = signal.resample_poly(matched_filtered, timing_upsample, 1)
 samples_per_symbol_interp = timing_upsample * samples_per_symbol
 
