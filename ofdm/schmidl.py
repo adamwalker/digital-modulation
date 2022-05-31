@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cmath as cm
 from   commpy import impairments
+import math
 
 N    = 256
 L    = 128
@@ -44,4 +45,5 @@ res = np.cumsum(conj_padded - conj_delayed)
 
 delay = np.argmax(abs(res))
 print(delay)
-print(cm.phase(res[delay]))
+print(cm.phase(res[delay]) / L / (2 * math.pi))
+
