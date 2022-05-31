@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import cmath as cm
+from   commpy import impairments
 
 N    = 256
 L    = 128
@@ -25,7 +26,7 @@ sym_cp = np.concatenate((sym_fft[-NCP:], sym_fft))
 #plt.show()
 
 #Channel
-rx = sym_cp
+rx = impairments.add_frequency_offset(sym_cp, 1, 0.001)
 
 rx_delayed = np.concatenate((np.zeros(L, dtype = complex), rx))
 rx_padded  = np.concatenate((rx, np.zeros(L, dtype = complex)))
@@ -37,9 +38,9 @@ conj_padded  = np.concatenate((conj, np.zeros(L, dtype = complex)))
 
 res = np.cumsum(conj_padded - conj_delayed)
 
-plt.figure(0)
-plt.plot(abs(res))
-plt.show()
+#plt.figure(0)
+#plt.plot(abs(res))
+#plt.show()
 
 delay = np.argmax(abs(res))
 print(delay)
