@@ -37,7 +37,7 @@ conj_padded  = np.concatenate((conj, np.zeros(L, dtype = complex)))
 res = np.cumsum(conj_padded - conj_delayed)
 
 plt.figure(0)
-plt.plot(res)
+plt.plot(abs(res))
 plt.show()
 
 print(np.argmax(res))
