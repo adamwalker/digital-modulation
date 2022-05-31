@@ -27,7 +27,7 @@ sym_cp = np.concatenate((sym_fft[-NCP:], sym_fft))
 #plt.show()
 
 #Channel
-rx = impairments.add_frequency_offset(sym_cp, 1, 0.001)
+rx = impairments.add_frequency_offset(sym_cp, 1, 0.003)
 
 rx_delayed = np.concatenate((np.zeros(L, dtype = complex), rx))
 rx_padded  = np.concatenate((rx, np.zeros(L, dtype = complex)))
