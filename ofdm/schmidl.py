@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import cmath as cm
 
 N    = 256
 L    = 128
@@ -40,4 +41,6 @@ plt.figure(0)
 plt.plot(abs(res))
 plt.show()
 
-print(np.argmax(res))
+delay = np.argmax(abs(res))
+print(delay)
+print(cm.phase(res[delay]))
