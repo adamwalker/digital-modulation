@@ -7,6 +7,7 @@ import math
 N    = 256
 L    = 128
 NCP  = 32
+MPL  = 24
 NSym = N + NCP
 
 #Generate random symbols
@@ -20,14 +21,10 @@ sym_fft = np.fft.ifft(sym)
 #Prepend cyclic prefix
 sym_cp = np.concatenate((sym_fft[-NCP:], sym_fft))
 
-#print(sym_cp)
-
-#plt.figure(0)
-#plt.plot(sym_cp)
-#plt.show()
-
 #Channel
 rx = impairments.add_frequency_offset(sym_cp, 1, 0.003)
+h = np.random.randn(MPL) + 1j*np.random.randn(MPL)
+rx = np.convolve(rx, h)
 
 rx_delayed = np.concatenate((np.zeros(L, dtype = complex), rx))
 rx_padded  = np.concatenate((rx, np.zeros(L, dtype = complex)))
@@ -39,9 +36,9 @@ conj_padded  = np.concatenate((conj, np.zeros(L, dtype = complex)))
 
 res = np.cumsum(conj_padded - conj_delayed)
 
-#plt.figure(0)
-#plt.plot(abs(res))
-#plt.show()
+plt.figure(0)
+plt.plot(abs(res))
+plt.show()
 
 delay = np.argmax(abs(res))
 print(delay)
