@@ -9,8 +9,8 @@ NSym = N + NCP
 sym1 = np.random.randn(N) + 1j*np.random.randn(N)
 sym2 = np.random.randn(N) + 1j*np.random.randn(N)
 
-print("TX symbols")
-print(sym1[0:16])
+print("TX symbol 2")
+#print(sym1[0:16])
 print(sym2[0:16])
 
 #OFDM modulate
@@ -38,9 +38,9 @@ sym2_rx = rx[NSym+NCP : NSym+N+NCP]
 sym1_dec = np.fft.fft(sym1_rx)
 sym2_dec = np.fft.fft(sym2_rx)
 
-print("Decoded RX symbols")
-print(sym1_dec[0:16])
-print(sym2_dec[0:16])
+#print("Decoded RX symbols")
+#print(sym1_dec[0:16])
+#print(sym2_dec[0:16])
 
 print("Inferred channel response")
 inferred_h = np.fft.ifft(sym1_dec / sym1) 
