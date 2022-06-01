@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 N    = 256
 NCP  = 32
+MPL  = 16
 NSym = N + NCP
 
 #Generate 2 random symbols
@@ -25,14 +26,15 @@ sym2_cp = np.concatenate((sym2_fft[-NCP:], sym2_fft))
 tx = np.concatenate((sym1_cp, sym2_cp))
 
 #Channel response
-h = np.random.randn(NCP) + 1j*np.random.randn(NCP)
+h = np.random.randn(MPL) + 1j*np.random.randn(MPL)
 rx = np.convolve(tx, h)
 print("Channel response")
 print(h)
 
 #slice symbols
-sym1_rx = rx[NCP : N+NCP]
-sym2_rx = rx[NSym+NCP : NSym+N+NCP]
+STO = -10 #Symbol timing offset
+sym1_rx = rx[NCP+STO : N+NCP+STO]
+sym2_rx = rx[NSym+NCP+STO : NSym+N+NCP+STO]
 
 #Decode the symbols
 sym1_dec = np.fft.fft(sym1_rx)
