@@ -25,10 +25,8 @@ def qpsk_encode(bits, samples_per_symbol):
     
     # Interpolate with RRC
     tx = np.convolve(x, h)
-    
-    tx_flat = tx.view(np.float64) * 1024
 
-    return tx_flat;
+    return tx;
 
 def qpsk_decode(rx, samples_per_symbol):
 

@@ -10,6 +10,8 @@ bits = np.tile([1, 0, 1, 0, 1, 0, 1, 0], int((num_symbols * 2) / 8))
 
 tx = qpsk_encode(bits, samples_per_symbol)
     
+tx_flat = tx.view(np.float64) * 1024
+
 #Write to file
 ints = tx.astype('int16')
 ints.tofile("samples.bin")
