@@ -19,5 +19,5 @@ sdr.gain = 'auto'
 rx = sdr.read_samples(num_samples)
 rx = sdr.read_samples(num_samples)
 
-qpsk_decode(rx, samples_per_symbol, num_symbols)
+qpsk_decode(rx, samples_per_symbol)
 

@@ -4,7 +4,9 @@ from scipy import signal
 from commpy import filters
 from commpy import impairments
 
-def qpsk_encode(bits, num_symbols, samples_per_symbol):
+def qpsk_encode(bits, samples_per_symbol):
+
+    num_symbols = int(len(bits) / samples_per_symbol)
     
     #Synchronous scrambler to make the data look random
     scrambled = np.zeros(len(bits), dtype=bool)
@@ -25,13 +27,12 @@ def qpsk_encode(bits, num_symbols, samples_per_symbol):
     tx = np.convolve(x, h)
     
     tx_flat = tx.view(np.float64) * 1024
-    
-    #Write to file
-    ints = tx_flat.astype('int16')
-    #print(ints[400:500])
-    ints.tofile("samples.bin")
 
-def qpsk_decode(rx, samples_per_symbol, num_symbols):
+    return tx_flat;
+
+def qpsk_decode(rx, samples_per_symbol):
+
+    num_symbols = int(len(rx) / samples_per_symbol)
 
     # Generate root raised cosine
     num_taps = 20 * samples_per_symbol 
@@ -122,7 +123,10 @@ def qpsk_decode(rx, samples_per_symbol, num_symbols):
     #Slicer
     out_flat = out.view(np.float64)
     out_sliced = out_flat > 0
+
     #Descrambler
     out_descrambled = out_sliced[:-58] ^ out_sliced[19:-39] ^ out_sliced[58:]
     print(out_descrambled[15000:15100])
+
+    return out_descrambled
 
